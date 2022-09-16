@@ -277,30 +277,30 @@ class UserProfileViewController: UIViewController {
     
     @objc func userProfileViewButtonAction(_: UIButton) {
         if UserDefaults.standard.bool(forKey: "LoginStatus") {
-            let popup = UIAlertController(title: "알림", message: "이미 로그인이 되셨습니다!", preferredStyle: .alert)
+//            let popup = UIAlertController(title: "알림", message: "이미 로그인이 되셨습니다!", preferredStyle: .alert)
+//
+//            let rightAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { action in
+                
+            let detailViewController = ProfileHalfViewController()
+            let nav = UINavigationController(rootViewController: detailViewController)
+            // 1
+            nav.modalPresentationStyle = .pageSheet
+
             
-            let rightAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { action in
-                
-                let detailViewController = ProfileHalfViewController()
-                let nav = UINavigationController(rootViewController: detailViewController)
-                // 1
-                nav.modalPresentationStyle = .pageSheet
+            // 2
+            if let sheet = nav.sheetPresentationController {
 
-                
-                // 2
-                if let sheet = nav.sheetPresentationController {
+                // 3
+                sheet.detents = [.medium(), .medium()]
 
-                    // 3
-                    sheet.detents = [.medium(), .medium()]
-
-                }
-                // 4
-                self.present(nav, animated: true, completion: nil)
             }
+            // 4
+            self.present(nav, animated: true, completion: nil)
+//            }
             
-            popup.addAction(rightAction)
-            
-            self.present(popup, animated: true, completion: nil)
+//            popup.addAction(rightAction)
+//            
+//            self.present(popup, animated: true, completion: nil)
             
         } else {
             let viewController = LoginViewController()

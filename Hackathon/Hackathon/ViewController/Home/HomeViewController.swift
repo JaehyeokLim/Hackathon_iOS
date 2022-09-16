@@ -272,7 +272,7 @@ class HomeViewController: UIViewController {
             make.top.equalTo(contentView).offset(20)
             make.leading.equalTo(contentView).offset(20)
             make.trailing.equalTo(contentView).offset(-20)
-            make.height.equalTo(150)
+            make.height.equalTo(200)
         }
         
         storageBoxStatusLabel.snp.makeConstraints { make in

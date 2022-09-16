@@ -59,6 +59,24 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    private let passwordTextFieldbottomLine: UILabel = {
+        let label = UILabel()
+        
+        label.layer.borderColor = UIColor.systemGray4.cgColor
+        label.layer.borderWidth = 1
+        
+        return label
+    }()
+    
+    private let loginButtonBottomLine: UILabel = {
+        let label = UILabel()
+        
+        label.layer.borderColor = UIColor.systemGray4.cgColor
+        label.layer.borderWidth = 1
+        
+        return label
+    }()
+    
     private let passwordTextField: UITextField = {
         let field = UITextField()
         
@@ -106,6 +124,28 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private let backVIewButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = UIColor.black
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        
+        return button
+    }()
+    
+    private let warningTextLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = " 아이디 또는 비밀번호를 잘못 입력했습니다"
+        label.textColor = UIColor.systemRed
+        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.isHidden = true
+
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,9 +153,10 @@ class LoginViewController: UIViewController {
     }
     
     private func superViewLayout() {
-        view.backgroundColor = UIColor.topViewBackgroundColor
+        view.backgroundColor = UIColor.white
         
-        superViewUIList = [titleLabel, idTextField, idTextFieldBottomLine, passwordTextField, loginButton, registerButton, idPasswordFindingButton]
+        superViewUIList = [titleLabel, idTextField, loginButtonBottomLine, passwordTextField, loginButton, registerButton, idPasswordFindingButton, backVIewButton, idTextFieldBottomLine,
+                           passwordTextFieldbottomLine, warningTextLabel]
         
         for uiView in superViewUIList {
             view.addSubview(uiView)
@@ -133,6 +174,13 @@ class LoginViewController: UIViewController {
             make.height.equalTo(35)
         }
         
+        idTextFieldBottomLine.snp.makeConstraints { make in
+            make.top.equalTo(idTextField.snp.bottom).offset(5)
+            make.leading.equalTo(90)
+            make.height.equalTo(1)
+            make.trailing.equalTo(-90)
+        }
+        
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(idTextField).offset(50)
             make.leading.equalTo(view).offset(90)
@@ -140,14 +188,21 @@ class LoginViewController: UIViewController {
             make.height.equalTo(35)
         }
         
+        passwordTextFieldbottomLine.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(5)
+            make.leading.equalTo(90)
+            make.height.equalTo(1)
+            make.trailing.equalTo(-90)
+        }
+        
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField).offset(50)
+            make.top.equalTo(passwordTextFieldbottomLine).offset(35)
             make.leading.equalTo(view).offset(90)
             make.trailing.equalTo(view).offset(-90)
             make.height.equalTo(50)
         }
         
-        idTextFieldBottomLine.snp.makeConstraints { make in
+        loginButtonBottomLine.snp.makeConstraints { make in
             make.top.equalTo(loginButton.snp.bottom).offset(15)
             make.leading.equalTo(75)
             make.height.equalTo(1)
@@ -155,17 +210,34 @@ class LoginViewController: UIViewController {
         }
         
         registerButton.snp.makeConstraints { make in
-            make.top.equalTo(idTextFieldBottomLine).offset(5)
+            make.top.equalTo(loginButtonBottomLine).offset(5)
             make.trailing.equalTo(loginButton.snp.trailing)
         }
         
         idPasswordFindingButton.snp.makeConstraints { make in
-            make.top.equalTo(idTextFieldBottomLine).offset(5)
+            make.top.equalTo(loginButtonBottomLine).offset(5)
             make.leading.equalTo(loginButton.snp.leading)
         }
         
+        backVIewButton.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(58)
+            make.leading.equalTo(view).offset(23)
+            make.size.equalTo(CGSize(width: 25, height: 25))
+        }
+        
+        warningTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextFieldbottomLine.snp.bottom).offset(10)
+            make.leading.equalTo(passwordTextFieldbottomLine)
+        }
+        
+        backVIewButton.addTarget(self, action: #selector(backVIewButtonAction), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
+        
+    }
+    
+    @objc func backVIewButtonAction(_: UIButton) {
+        dismiss(animated: true)
     }
     
     @objc func registerButtonAction(_: UIButton) {
@@ -221,22 +293,26 @@ class LoginViewController: UIViewController {
         .responseData { response in
             if response.response?.statusCode == 200 {
                 print("로그인 성공!\n")
+                
+                self.warningTextLabel.isHidden = true
+                
                 UserDefaults.standard.set(true, forKey: "LoginStatus")
                 UserDefaults.standard.set(String(self.idTextField.text!), forKey: "userID")
                 UserDefaults.standard.set(String(self.passwordTextField.text!), forKey: "userPassword")
                 print("LoginStatus: \(UserDefaults.standard.bool(forKey: "LoginStatus")) 저장완료\nuserID: \(UserDefaults.standard.string(forKey: "userID")!) 저장완료\nuserPassword: \(UserDefaults.standard.string(forKey: "userPassword")!) 저장완료")
                 self.getData(id: self.idTextField.text!, password: self.passwordTextField.text!)
-                
+
                 DispatchQueue.main.async {
                     
                 }
                 
+                self.dismiss(animated: true)
+                
             } else {
+                self.warningTextLabel.isHidden = false
                 print("로그인 실패..")
             }
         }
-        
-        self.dismiss(animated: true)
     }
     
     func getData(id: String, password: String) {

@@ -29,7 +29,7 @@ class registerViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         
-        view.backgroundColor = UIColor.topViewBackgroundColor
+        view.backgroundColor = UIColor.white
         view.showsVerticalScrollIndicator = false
 
         return view
@@ -38,7 +38,7 @@ class registerViewController: UIViewController {
     private let contentView: UIView = {
         let view = UIView()
         
-        view.backgroundColor = UIColor.topViewBackgroundColor
+        view.backgroundColor = UIColor.white
         
         return view
     }()
@@ -61,7 +61,7 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
         
@@ -77,7 +77,7 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         
         return field
@@ -91,7 +91,33 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
+        field.textAlignment = .left
+        field.autocapitalizationType = .none
+        
+        return field
+    }()
+    
+    private let emailLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "@"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 23)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private let emailTextLastField: UITextField = {
+        let field = UITextField()
+        
+        field.placeholder = "gmail.com"
+        
+        field.backgroundColor = UIColor.white
+        field.layer.cornerRadius = 5
+        field.textColor = UIColor.darkGray
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
         
@@ -106,7 +132,7 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
 
@@ -116,16 +142,53 @@ class registerViewController: UIViewController {
     private let aptNumTextField: UITextField = {
         let field = UITextField()
         
-        field.placeholder = "상세주소를 입력해주세요 ex) 동, 호수"
+        field.placeholder = ""
         
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
         
         return field
+    }()
+    
+    private let aptNumDongLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "동"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 23)
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
+    private let aptNumLastTextField: UITextField = {
+        let field = UITextField()
+        
+        field.placeholder = ""
+        
+        field.backgroundColor = UIColor.white
+        field.layer.cornerRadius = 5
+        field.textColor = UIColor.darkGray
+        field.font = UIFont.boldSystemFont(ofSize: 17)
+        field.textAlignment = .left
+        field.autocapitalizationType = .none
+        
+        return field
+    }()
+    
+    private let aptNumHoLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "호"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 23)
+        label.textAlignment = .center
+        
+        return label
     }()
     
     private let profileBottomLine: UILabel = {
@@ -155,7 +218,7 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
         
@@ -170,9 +233,10 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
+        field.isSecureTextEntry = true
         
         return field
     }()
@@ -185,9 +249,10 @@ class registerViewController: UIViewController {
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
-        field.font = UIFont.boldSystemFont(ofSize: 18)
+        field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
+        field.isSecureTextEntry = true
         
         return field
     }()
@@ -204,11 +269,10 @@ class registerViewController: UIViewController {
     private let NextButton: UIButton = {
         let button = UIButton()
         
-        button.layer.backgroundColor = UIColor.titleLogoColor?.cgColor
-        button.layer.cornerRadius = 15
-        button.setTitle("다음 단계로 이동", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        button.tintColor = UIColor.black
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
         
         return button
     }()
@@ -293,6 +357,28 @@ class registerViewController: UIViewController {
         return label
     }()
     
+    private let backVIewButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = UIColor.black
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        
+        return button
+    }()
+    
+    private let warningTextLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "모든 정보를 기입해주세요"
+        label.textColor = UIColor.systemRed
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.isHidden = true
+        
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -302,9 +388,9 @@ class registerViewController: UIViewController {
     }
     
     private func superViewLayout() {
-        view.backgroundColor = UIColor.topViewBackgroundColor
+        view.backgroundColor = UIColor.white
         
-        superViewUIList = [scrollView, titleLabel]
+        superViewUIList = [scrollView, titleLabel, backVIewButton]
         
         for uiView in superViewUIList {
             view.addSubview(uiView)
@@ -319,6 +405,18 @@ class registerViewController: UIViewController {
             make.top.equalTo(view).offset(100)
             make.leading.bottom.trailing.equalTo(0)
         }
+        
+        backVIewButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel).offset(3)
+            make.leading.equalTo(view).offset(23)
+            make.size.equalTo(CGSize(width: 25, height: 25))
+        }
+        
+        backVIewButton.addTarget(self, action: #selector(backVIewButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func backVIewButtonAction(_: UIButton) {
+        dismiss(animated: true)
     }
     
     private func scrollViewLayout() {
@@ -332,28 +430,34 @@ class registerViewController: UIViewController {
             make.top.equalTo(scrollView)
             make.leading.trailing.bottom.equalTo(scrollView)
             make.width.equalTo(scrollView)
-            make.height.equalTo(1700)
+            make.height.equalTo(700)
         }
     }
     
     private func contentViewLayout() {
         contentViewUIList = [profileTextLabel, userNameTextField, phoneNumberTextField, emailTextField, addressTextField, aptNumTextField, profileBottomLine, accountTextLabel, idTextField, passwordTextField, passwordCheckTextField, accountBottomLine, NextButton,
-            nameTextLabel, phoneNumberTextLabel, emailTextLabel, addressTextLabel, aptNumberTextLabel, idTextLabel, passwordTextLabel, passwordCheckTextLabel]
+            nameTextLabel, phoneNumberTextLabel, emailTextLabel, addressTextLabel, aptNumberTextLabel, idTextLabel, passwordTextLabel, passwordCheckTextLabel, emailTextLastField, emailLabel,
+                             warningTextLabel, aptNumLastTextField, aptNumDongLabel, aptNumHoLabel]
         
         for uiView in contentViewUIList {
             contentView.addSubview(uiView)
         }
         
         profileTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(30)
+            make.top.equalTo(contentView).offset(10)
             make.leading.equalTo(contentView).offset(25)
         }
-        
+                
         userNameTextField.snp.makeConstraints { make in
             make.top.equalTo(profileTextLabel).offset(80)
             make.leading.equalTo(30)
             make.height.equalTo(35)
             make.width.equalTo(335)
+        }
+        
+        nameTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(userNameTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
         }
         
         phoneNumberTextField.snp.makeConstraints { make in
@@ -363,11 +467,34 @@ class registerViewController: UIViewController {
             make.width.equalTo(335)
         }
         
+        phoneNumberTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(phoneNumberTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
+        }
+        
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(phoneNumberTextField).offset(50)
             make.leading.equalTo(30)
             make.height.equalTo(35)
-            make.width.equalTo(335)
+            make.width.equalTo(147.5)
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField).offset(1.5)
+            make.leading.equalTo(emailTextField.snp.trailing)
+            make.trailing.equalTo(emailTextLastField.snp.leading)
+        }
+        
+        emailTextLastField.snp.makeConstraints { make in
+            make.top.equalTo(emailTextField)
+            make.leading.equalTo(emailTextField.snp.trailing).offset(30)
+            make.height.equalTo(35)
+            make.width.equalTo(147.5)
+        }
+        
+        emailTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(emailTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
         }
         
         addressTextField.snp.makeConstraints { make in
@@ -377,11 +504,40 @@ class registerViewController: UIViewController {
             make.width.equalTo(335)
         }
         
+        addressTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(addressTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
+        }
+        
         aptNumTextField.snp.makeConstraints { make in
             make.top.equalTo(addressTextField).offset(50)
             make.leading.equalTo(30)
             make.height.equalTo(35)
-            make.width.equalTo(335)
+            make.width.equalTo(70)
+        }
+        
+        aptNumDongLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressTextField).offset(55)
+            make.leading.equalTo(aptNumTextField.snp.trailing)
+            make.trailing.equalTo(aptNumLastTextField.snp.leading)
+        }
+        
+        aptNumLastTextField.snp.makeConstraints { make in
+            make.top.equalTo(addressTextField).offset(50)
+            make.leading.equalTo(aptNumTextField.snp.trailing).offset(40)
+            make.height.equalTo(35)
+            make.width.equalTo(70)
+        }
+        
+        aptNumHoLabel.snp.makeConstraints { make in
+            make.top.equalTo(addressTextField).offset(55)
+            make.leading.equalTo(aptNumLastTextField.snp.trailing).offset(10)
+ 
+        }
+        
+        aptNumberTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(aptNumTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
         }
         
         profileBottomLine.snp.makeConstraints { make in
@@ -403,6 +559,11 @@ class registerViewController: UIViewController {
             make.height.equalTo(35)
             make.width.equalTo(335)
         }
+        
+        idTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(idTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
+        }
 
         passwordTextField.snp.makeConstraints { make in
             make.top.equalTo(idTextField).offset(50)
@@ -410,12 +571,22 @@ class registerViewController: UIViewController {
             make.height.equalTo(35)
             make.width.equalTo(335)
         }
+        
+        passwordTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(passwordTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
+        }
 
         passwordCheckTextField.snp.makeConstraints { make in
             make.top.equalTo(passwordTextField).offset(50)
             make.leading.equalTo(30)
             make.height.equalTo(35)
             make.width.equalTo(335)
+        }
+        
+        passwordCheckTextLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(passwordCheckTextField.snp.top).offset(5)
+            make.leading.equalTo(view).offset(30)
         }
 
         accountBottomLine.snp.makeConstraints { make in
@@ -427,17 +598,32 @@ class registerViewController: UIViewController {
         }
         
         NextButton.snp.makeConstraints { make in
-            make.top.equalTo(accountBottomLine.snp.bottom).offset(35)
-            make.leading.equalTo(30)
-            make.height.equalTo(60)
-            make.width.equalTo(335)
+            make.top.equalTo(accountBottomLine.snp.bottom).offset(25)
+            make.trailing.equalTo(accountBottomLine.snp.trailing)
+            make.size.equalTo(CGSize(width: 25, height: 25))
+        }
+        
+        warningTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(NextButton)
+            make.leading.equalTo(accountBottomLine)
         }
         
         NextButton.addTarget(self, action: #selector(nextbuttonAction), for: .touchUpInside)
     }
     
     @objc func nextbuttonAction(_: UIButton) {
-        postBodyJsonRequest()
+        if userNameTextField.text == "" || phoneNumberTextField.text == "" || emailTextField.text == "" || emailTextLastField.text == "" || addressTextField.text == "" ||
+            aptNumTextField.text == "" || idTextField.text == "" || passwordTextField.text == "" || passwordCheckTextField.text == "" {
+            
+            warningTextLabel.isHidden = false
+
+            return
+            
+        } else {
+            warningTextLabel.isHidden = true
+
+            postBodyJsonRequest()
+        }
     }
     
     func postBodyJsonRequest(){
@@ -458,9 +644,9 @@ class registerViewController: UIViewController {
             "pwd": passwordTextField.text!,
             "name": userNameTextField.text!,
             "phoneNumber": Int(phoneNumberTextField.text!)!,
-            "email": emailTextField.text!,
+            "email": emailTextField.text! + "@" + emailTextLastField.text!,
             "address": addressTextField.text!,
-            "aptNum": aptNumTextField.text!,
+            "aptNum": aptNumTextField.text! + "-" + aptNumLastTextField.text!,
         ]
         
         // [http 요청 수행 실시]
