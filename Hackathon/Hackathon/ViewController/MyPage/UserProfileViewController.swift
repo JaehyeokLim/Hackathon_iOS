@@ -192,7 +192,7 @@ class UserProfileViewController: UIViewController {
             make.top.equalTo(scrollView)
             make.leading.trailing.bottom.equalTo(scrollView)
             make.width.equalTo(scrollView)
-            make.height.equalTo(700)
+            make.height.equalTo(1700)
         }
     }
     
@@ -270,6 +270,30 @@ class UserProfileViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(settingViewLabel.snp.bottom).offset(15)
             make.leading.bottom.trailing.equalTo(settingViewEdge)
+        }
+        
+        userProfileViewButton.addTarget(self, action: #selector(userProfileViewButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func userProfileViewButtonAction(_: UIButton) {
+        if UserDefaults.standard.bool(forKey: "LoginStatus") {
+            let popup = UIAlertController(title: "알림", message: "이미 로그인이 되셨습니다!", preferredStyle: .alert)
+            
+            let rightAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { action in
+                
+                self.dismiss(animated: true)
+            }
+            
+            popup.addAction(rightAction)
+            
+            self.present(popup, animated: true, completion: nil)
+            
+        } else {
+            let viewController = LoginViewController()
+            
+            viewController.modalPresentationStyle = .fullScreen
+            
+            present(viewController, animated: true)
         }
     }
 }

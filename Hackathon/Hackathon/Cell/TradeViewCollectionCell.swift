@@ -14,8 +14,9 @@ class TradeViewCollectionCell: UICollectionViewCell {
     let UserViewImage: UIButton = {
         let UserViewImage = UIButton()
         
-        UserViewImage.layer.cornerRadius = 10
-        
+        UserViewImage.layer.cornerRadius = 15
+        UserViewImage.layer.masksToBounds = true
+
         return UserViewImage
     }()
     

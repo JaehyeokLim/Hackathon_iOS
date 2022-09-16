@@ -1,0 +1,22 @@
+//
+//  RegisterModel.swift
+//  Hackathon
+//
+//  Created by Jaehyeok Lim on 2022/09/16.
+//
+
+import UIKit
+
+var RegisterDataList = [RegisterData]()
+
+struct RegisterData {
+    
+    let userID: String?
+    let userPassword: String?
+    let userName: String?
+    let userCellPhoneNumber: Int?
+    let userEmail: String?
+    let userAddress: String?
+    let aptNum: String?
+}
+

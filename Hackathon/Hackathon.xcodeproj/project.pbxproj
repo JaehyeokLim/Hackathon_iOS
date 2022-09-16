@@ -30,6 +30,7 @@
 		FAB8F1BF28D30E8400043AEB /* SalesPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */; };
 		FAB8F1C228D30F8F00043AEB /* PostWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1C128D30F8F00043AEB /* PostWriteViewController.swift */; };
 		FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */; };
+		FAB8F1CE28D45E1C00043AEB /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1CD28D45E1C00043AEB /* RegisterModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesPostModel.swift; sourceTree = "<group>"; };
 		FAB8F1C128D30F8F00043AEB /* PostWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewController.swift; sourceTree = "<group>"; };
 		FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosManager.swift; sourceTree = "<group>"; };
+		FAB8F1CD28D45E1C00043AEB /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */,
+				FAB8F1CD28D45E1C00043AEB /* RegisterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				FAB8F1B628D2388E00043AEB /* BoxViewController.swift in Sources */,
 				FAB3A58928D2335900B9D60D /* LoginViewController.swift in Sources */,
 				FAB8F1BD28D30A2400043AEB /* TradeViewCollectionCell.swift in Sources */,
+				FAB8F1CE28D45E1C00043AEB /* RegisterModel.swift in Sources */,
 				FAB3A58D28D2342100B9D60D /* TabBarController.swift in Sources */,
 				FAB3A55728D232AB00B9D60D /* HomeViewController.swift in Sources */,
 				FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */,

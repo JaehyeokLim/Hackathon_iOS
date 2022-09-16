@@ -7,6 +7,7 @@ target 'Hackathon' do
 
   # Pods for Hackathon
   pod 'SnapKit', '~>5.6.0'
+  pod 'Alamofire', '~> 5.1'
   target 'HackathonTests' do
     inherit! :search_paths
     # Pods for testing
