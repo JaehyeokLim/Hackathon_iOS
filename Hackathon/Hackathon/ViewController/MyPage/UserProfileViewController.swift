@@ -281,7 +281,21 @@ class UserProfileViewController: UIViewController {
             
             let rightAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { action in
                 
-                self.dismiss(animated: true)
+                let detailViewController = ProfileHalfViewController()
+                let nav = UINavigationController(rootViewController: detailViewController)
+                // 1
+                nav.modalPresentationStyle = .pageSheet
+
+                
+                // 2
+                if let sheet = nav.sheetPresentationController {
+
+                    // 3
+                    sheet.detents = [.medium(), .medium()]
+
+                }
+                // 4
+                self.present(nav, animated: true, completion: nil)
             }
             
             popup.addAction(rightAction)

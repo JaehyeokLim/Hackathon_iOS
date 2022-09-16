@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ImagePickerManger().checkAlbumPermission()
         ImagePickerManger().checkCameraPermission()
         
+//        UserDefaults.standard.set(false, forKey: "LoginStatus")
+            
+        if UserDefaults.standard.bool(forKey: "LoginStatus") == true {
+            LoginViewController().getData(id: UserDefaults.standard.string(forKey: "userID")!, password: UserDefaults.standard.string(forKey: "userPassword")!)
+            print("UserInfo 불러오기 완료")
+            print("userID: \(UserDefaults.standard.string(forKey: "userID")) 불러오기 완료\nuserPassword: \(UserDefaults.standard.string(forKey: "userPassword")) 불러오기 완료")
+        }
+        
         return true
     }
 

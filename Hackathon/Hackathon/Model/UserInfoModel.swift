@@ -7,12 +7,11 @@
 
 import UIKit
 
-var RegisterDataList = [RegisterData]()
+var UserInfoDataList = [UserInfoData]()
 
-struct RegisterData {
+struct UserInfoData {
     
     let userID: String?
-    let userPassword: String?
     let userName: String?
     let userCellPhoneNumber: Int?
     let userEmail: String?

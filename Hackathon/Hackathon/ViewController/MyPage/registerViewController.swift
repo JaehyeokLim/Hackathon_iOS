@@ -63,6 +63,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -92,6 +93,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -106,7 +108,8 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
-        
+        field.autocapitalizationType = .none
+
         return field
     }()
     
@@ -120,6 +123,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -153,6 +157,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -167,6 +172,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -181,6 +187,7 @@ class registerViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -430,107 +437,11 @@ class registerViewController: UIViewController {
     }
     
     @objc func nextbuttonAction(_: UIButton) {
-        let item =  RegisterData(userID: idTextField.text, userPassword: passwordTextField.text, userName: userNameTextField.text, userCellPhoneNumber: Int(phoneNumberTextField.text!), userEmail: userNameTextField.text, userAddress: addressTextField.text, aptNum: aptNumTextField.text)
-
-        RegisterDataList.insert(item, at: 0)
-        
-        print(RegisterDataList)
         postBodyJsonRequest()
-//        registerDataPost(list: RegisterDataList)
     }
     
-    func registerDataPost(list: Array<Any>) {
-//        guard let url = URL(string: "http://34.64.186.176/register") else {
-//            print("url is wrong")
-//            return
-//        }
-//
-//        var request = URLRequest(url: url)
-//
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//        let body: [String: Any] = [
-//            "id": RegisterDataList[0].userID!,
-//            "pwd": RegisterDataList[0].userPassword!,
-//            "name": RegisterDataList[0].userName!,
-//            "phoneNumber": RegisterDataList[0].userCellPhoneNumber!,
-//            "email": RegisterDataList[0].userEmail!,
-//            "address": RegisterDataList[0].userAddress!,
-//            "aptNum": RegisterDataList[0].aptNum!
-//        ]
-//
-//        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
-//
-//        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-//            guard let data = data, error == nil else {
-//                return
-//            }
-//
-//            do {
-//                let response = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-//                print("SUCCESS: \(response)")
-//            }
-//
-//            catch {
-//                print(error)
-//            }
-//        }
-//
-//        task.resume()
-        let URL = "http://34.64.186.176/register"
-        //전송할 파라미터 정보
-        let PARAM:Parameters = [
-//            "id": idTextField.text!,
-//            "pwd": passwordTextField.text!,
-//            "name": userNameTextField.text!,
-//            "phoneNumber": Int(phoneNumberTextField.text!)!,
-//            "email": emailTextField.text!,
-//            "address": addressTextField.text!,
-//            "aptNum": aptNumTextField.text!
-            "id": "jaehyeoklim",
-            "pwd": "1234",
-            "name": "임재혁",
-            "phoneNumber": 01024985409,
-            "email": "aaa@gmail.com",
-            "address": "두성아파트",
-            "aptNum": "101동 901호",
-            "Accept-Language": "en"
-        ]
-        //위의 URL와 파라미터를 담아서 POST 방식으로 통신하며, statusCode가 200번대(정상적인 통신) 인지 유효성 검사 진행
-        let alamo = AF.request(URL, method: .post, parameters: PARAM).validate(statusCode: 200..<300)
-        //결과값으로 문자열을 받을 때 사용
-        alamo.responseString() { response in
-            switch response.result
-            {
-            //통신성공
-            case .success(let value):
-                print("value: \(value)")
-                
-            //통신실패
-            case .failure(let error):
-                print("error: \(String(describing: error.errorDescription))")
-            }
-        }
-    }
-    
-// MARK: - [Post Body Json Request 방식 http 요청 실시]
     func postBodyJsonRequest(){
-        
-        /*
-         // -----------------------------------------
-         [postBodyJsonRequest 메소드 설명]
-         // -----------------------------------------
-         1. 사전 spm 매니저 사용해 Alamofire 라이브러리 설치 필요 :
-         https://github.com/Alamofire/Alamofire
-         // -----------------------------------------
-         2. http 허용 info plist : App Transport Security Settings >> Allow Arbitrary Loads >> YES
-         // -----------------------------------------
-         3. import 추가 : import Alamofire
-         // -----------------------------------------
-         */
-        
-        
+
         // [http 요청 주소 지정]
         let url = "http://34.64.186.176/register"
         

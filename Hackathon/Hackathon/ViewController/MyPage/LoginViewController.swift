@@ -9,6 +9,15 @@ import UIKit
 import SnapKit
 import Alamofire
 
+struct User: Codable {
+    var id: String
+    var name: String
+    var phoneNumber: Int
+    var email: String
+    var address: String
+    var aptNum: String
+}
+
 class LoginViewController: UIViewController {
     
     var superViewUIList: [UIView] = []
@@ -36,6 +45,7 @@ class LoginViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -59,6 +69,7 @@ class LoginViewController: UIViewController {
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 18)
         field.textAlignment = .left
+        field.autocapitalizationType = .none
         
         return field
     }()
@@ -209,13 +220,59 @@ class LoginViewController: UIViewController {
         .validate(statusCode: 200..<300)
         .responseData { response in
             if response.response?.statusCode == 200 {
-                print("로그인 성공!")
+                print("로그인 성공!\n")
                 UserDefaults.standard.set(true, forKey: "LoginStatus")
+                UserDefaults.standard.set(String(self.idTextField.text!), forKey: "userID")
+                UserDefaults.standard.set(String(self.passwordTextField.text!), forKey: "userPassword")
+                print("LoginStatus: \(UserDefaults.standard.bool(forKey: "LoginStatus")) 저장완료\nuserID: \(UserDefaults.standard.string(forKey: "userID")!) 저장완료\nuserPassword: \(UserDefaults.standard.string(forKey: "userPassword")!) 저장완료")
+                self.getData(id: self.idTextField.text!, password: self.passwordTextField.text!)
                 
-                self.dismiss(animated: true)
+                DispatchQueue.main.async {
+                    
+                }
+                
             } else {
                 print("로그인 실패..")
             }
+        }
+        
+        self.dismiss(animated: true)
+    }
+    
+    func getData(id: String, password: String) {
+        let semaphore = DispatchSemaphore (value: 0)
+
+        let parameters = "{\n    \"id\": \"\(id)\",\n    \"pwd\": \"\(password)\"\n}"
+        let postData = parameters.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: "http://34.64.186.176/login")!,timeoutInterval: Double.infinity)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("loginData=s%3A-jQDdUIpZ1vZgcFqqYk6i8gVbCWScGaV.Vqg5UDiB89%2FAl5zq%2Bv4DKlhpRiRMt0IarNtUZf%2BlyFY", forHTTPHeaderField: "Cookie")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            semaphore.signal()
+            return
+          }
+            
+            let info = try? JSONDecoder().decode(User.self, from: data)
+            print("불러오기 완료 \(info)")
+            
+            let item = UserInfoData(userID: info?.id, userName: info?.name, userCellPhoneNumber: info?.phoneNumber, userEmail: info?.email, userAddress: info?.address, aptNum: info?.aptNum)
+            
+            UserInfoDataList.insert(item, at: 0)
+            print("UserInfo DataList에 저장완료")
+        }
+        
+        task.resume()
+//        semaphore.wait()
+        
+        DispatchQueue.main.async {
+        
         }
     }
 }
