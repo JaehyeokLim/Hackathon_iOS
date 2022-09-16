@@ -29,6 +29,7 @@
 		FAB8F1BD28D30A2400043AEB /* TradeViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1BC28D30A2400043AEB /* TradeViewCollectionCell.swift */; };
 		FAB8F1BF28D30E8400043AEB /* SalesPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */; };
 		FAB8F1C228D30F8F00043AEB /* PostWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1C128D30F8F00043AEB /* PostWriteViewController.swift */; };
+		FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		FAB8F1BC28D30A2400043AEB /* TradeViewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeViewCollectionCell.swift; sourceTree = "<group>"; };
 		FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesPostModel.swift; sourceTree = "<group>"; };
 		FAB8F1C128D30F8F00043AEB /* PostWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWriteViewController.swift; sourceTree = "<group>"; };
+		FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		FAB3A55128D232AB00B9D60D /* Hackathon */ = {
 			isa = PBXGroup;
 			children = (
+				FAB8F1CA28D3492F00043AEB /* Manager */,
 				FAB8F1C028D30E8700043AEB /* Model */,
 				FAB8F1BB28D2FD1600043AEB /* Cell */,
 				FAB3A58528D2333000B9D60D /* ViewController */,
@@ -259,6 +262,14 @@
 				FAB3A58C28D2342100B9D60D /* TabBarController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FAB8F1CA28D3492F00043AEB /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +516,7 @@
 				FAB8F1BD28D30A2400043AEB /* TradeViewCollectionCell.swift in Sources */,
 				FAB3A58D28D2342100B9D60D /* TabBarController.swift in Sources */,
 				FAB3A55728D232AB00B9D60D /* HomeViewController.swift in Sources */,
+				FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */,
 				FAB8F1BA28D2FD1100043AEB /* UserProfileViewTableCell.swift in Sources */,
 				FAB3A58728D2334A00B9D60D /* UserProfileViewController.swift in Sources */,
 				FAB3A55328D232AB00B9D60D /* AppDelegate.swift in Sources */,

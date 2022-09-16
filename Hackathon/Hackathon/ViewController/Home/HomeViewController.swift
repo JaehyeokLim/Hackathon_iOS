@@ -357,6 +357,17 @@ class HomeViewController: UIViewController {
             make.trailing.equalTo(mapViewEdge).offset(0)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
+        
+        storageBoxStatusButton.addTarget(self, action: #selector(storageBoxStatusButtonAction), for: .touchUpInside)
+        goodsOfTodayButton.addTarget(self, action: #selector(goodsOfTodayButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func storageBoxStatusButtonAction(_: UIButton) {
+        tabBarController?.selectedIndex = 1
+    }
+    
+    @objc func goodsOfTodayButtonAction(_: UIButton) {
+        tabBarController?.selectedIndex = 2
     }
 }
 

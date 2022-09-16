@@ -7,14 +7,14 @@
 
 import UIKit
 
-var list = [SalesPostData]()
+var SalesPostDatalist = [SalesPostData]()
 
 struct SalesPostData {
     
-    let GoodsImage: UIImageView?
+    let GoodsImage: UIImage?
     let PostTitleText: String?
     let PostMainText: String?
-    let PostDate: String?
-    let BoxNumber: Int?
-    let PostHashTag: String?
+    let PostDate: Date?
+    let BoxNumber: String?
+    let PostCategory: String?
 }

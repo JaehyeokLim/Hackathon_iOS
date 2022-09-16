@@ -12,6 +12,7 @@ class TradeViewController: UIViewController {
     
     var superViewUIList: [UIView] = []
     var scrollViewUIList: [UIView] = []
+    var contentViewUIList: [UIView] = []
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -63,11 +64,28 @@ class TradeViewController: UIViewController {
         return view
     }()
     
+    private let collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+
+        collectionView.register(TradeViewCollectionCell.self, forCellWithReuseIdentifier: "TradeViewCollectionCell")
+        collectionView.backgroundColor = UIColor.topViewBackgroundColor
+        
+        return collectionView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         superViewLayout()
         scrollViewLayout()
+        contentViewLayout()
+        collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        collectionView.reloadData()
     }
     
     private func superViewLayout() {
@@ -125,5 +143,66 @@ class TradeViewController: UIViewController {
             make.width.equalTo(scrollView)
             make.height.equalTo(700)
         }
+    }
+    
+    private func contentViewLayout() {
+        
+        contentViewUIList = [collectionView]
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        for uiView in contentViewUIList {
+            contentView.addSubview(uiView)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(30)
+            make.leading.equalTo(contentView)
+            make.right.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+        }
+    }
+}
+
+extension TradeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return SalesPostDatalist.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TradeViewCollectionCell", for: indexPath) as? TradeViewCollectionCell else { return UICollectionViewCell() }
+        
+//        cell.UserViewImage.image = SalesPostDatalist[indexPath.row].GoodsImage
+        cell.UserViewImage.setImage(SalesPostDatalist[indexPath.row].GoodsImage, for: .normal)
+
+        collectionView.reloadData()
+        
+        return cell
+    }
+}
+
+extension TradeViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+            let interval:CGFloat = 3
+            let width: CGFloat = ( UIScreen.main.bounds.width - interval * 2 ) / 3
+            return CGSize(width: width , height: width )
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            return 3
     }
 }
