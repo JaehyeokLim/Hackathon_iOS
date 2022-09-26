@@ -57,13 +57,13 @@ class registerViewController: UIViewController {
         let field = UITextField()
         
         field.placeholder = "이름을 입력해주세요"
-        
         field.backgroundColor = UIColor.white
         field.layer.cornerRadius = 5
         field.textColor = UIColor.darkGray
         field.font = UIFont.boldSystemFont(ofSize: 17)
         field.textAlignment = .left
         field.autocapitalizationType = .none
+        field.becomeFirstResponder()
         
         return field
     }()
@@ -381,7 +381,7 @@ class registerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         superViewLayout()
         scrollViewLayout()
         contentViewLayout()
@@ -430,7 +430,7 @@ class registerViewController: UIViewController {
             make.top.equalTo(scrollView)
             make.leading.trailing.bottom.equalTo(scrollView)
             make.width.equalTo(scrollView)
-            make.height.equalTo(700)
+            make.height.equalTo(980)
         }
     }
     

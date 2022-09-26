@@ -94,7 +94,16 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    private let goodsOfTodayEdge: UIButton = {
+    private let deliveryViewEdge: UIButton = {
+        let button = UIButton()
+        
+        button.layer.backgroundColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 15
+        
+        return button
+    }()
+    
+    private let tradeViewEdge: UIButton = {
         let button = UIButton()
         
         button.layer.backgroundColor = UIColor.white.cgColor
@@ -106,7 +115,7 @@ class HomeViewController: UIViewController {
     private let goodsOfTodayLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "회원님을 위한 오늘의 상품"
+        label.text = ""
         label.textColor = UIColor.black
         label.font = UIFont.boldSystemFont(ofSize: 22)
         
@@ -118,6 +127,15 @@ class HomeViewController: UIViewController {
         
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.tintColor = UIColor.black
+        
+        return button
+    }()
+    
+    private let homeViewVerticalLine: UIButton = {
+        let button = UIButton()
+        
+        button.layer.borderWidth = 2.5
+        button.layer.borderColor = UIColor.topViewBackgroundColor?.cgColor
         
         return button
     }()
@@ -206,12 +224,132 @@ class HomeViewController: UIViewController {
         return button
     }()
     
+    private let collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 10 // cell사이의 간격 설정
+        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        view.backgroundColor = UIColor.white
+        view.register(HomeViewMyBoxCollectionCell.self, forCellWithReuseIdentifier: "HomeViewMyBoxCollectionCell")
+        view.showsHorizontalScrollIndicator = false
+        
+        return view
+    }()
+    
+    private let secondCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 10 // cell사이의 간격 설정
+        let view = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        view.backgroundColor = UIColor.white
+        view.register(HomeViewGoodsCollectionCell.self, forCellWithReuseIdentifier: "HomeViewGoodsCollectionCell")
+        view.showsHorizontalScrollIndicator = false
+        
+        return view
+    }()
+    
+    private let myBoxDeliveryLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "택배"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.cornerRadius = 5
+        
+        return label
+    }()
+    
+    private let myBoxTradeLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "거래"
+        label.textColor = UIColor.black
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.layer.backgroundColor = UIColor.white.cgColor
+        label.layer.cornerRadius = 5
+        
+        return label
+    }()
+    
+    private let myDeliveryBoxEALabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "택배함 소지 개수"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        return label
+    }()
+    
+    private let myTradeBoxEALabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "거래함 소지 개수"
+        label.textColor = UIColor.darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        return label
+    }()
+    
+    private let myDeliveryBoxNumber: UILabel = {
+        let label = UILabel()
+        
+        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 70)
+        label.textAlignment = .center
+        label.layer.backgroundColor = UIColor.white.cgColor
+        
+        return label
+    }()
+    
+    private let myTradeBoxNumber: UILabel = {
+        let label = UILabel()
+        
+        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 70)
+        label.textAlignment = .center
+        label.layer.backgroundColor = UIColor.white.cgColor
+        
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(boxCountNumber)
+        collectionView.reloadData()
+
         superViewLayout()
         scrollViewLayout()
         contentViewLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(boxCountNumber)
+        deliveryAndTradeEA()
+        collectionView.reloadData()
+    }
+    
+    private func deliveryAndTradeEA() {
+        var deliveryNumber: Int = 0
+        var tradeNumber: Int = 0
+        
+        for i in 0..<BoxStatusDataList.count {
+            if BoxStatusDataList[i].boxEmpty == 1 && BoxStatusDataList[i].ownerName == UserInfoDataList[0].userID {
+                deliveryNumber += 1
+            } else if BoxStatusDataList[i].boxEmpty == 2 && BoxStatusDataList[i].ownerName == UserInfoDataList[0].userID {
+                tradeNumber += 1
+            } else {
+                continue
+            }
+        }
+        
+        myDeliveryBoxNumber.text = String(deliveryNumber)
+        myTradeBoxNumber.text = String(tradeNumber)
+        print("deliveryNumber is \(deliveryNumber), tradeNumber is \(tradeNumber)")
     }
     
     private func superViewLayout() {
@@ -262,8 +400,15 @@ class HomeViewController: UIViewController {
     }
     
     private func contentViewLayout() {
-        contentViewUIList = [storageBoxStatusEdge, storageBoxStatusLabel, storageBoxStatusButton, goodsOfTodayEdge, goodsOfTodayLabel, goodsOfTodayButton, saleStatusEdge, saleStatusLabel, saleStatusButton, purchaseStatusEdge, purchaseStatusLabel, purchaseStatusButton, mapViewEdge, mapViewLabel, mapViewButton]
+        contentViewUIList = [storageBoxStatusEdge, storageBoxStatusLabel, storageBoxStatusButton, deliveryViewEdge, goodsOfTodayLabel, goodsOfTodayButton, saleStatusEdge, saleStatusLabel, saleStatusButton, purchaseStatusEdge, purchaseStatusLabel, purchaseStatusButton, mapViewEdge, mapViewLabel, mapViewButton, collectionView, homeViewVerticalLine, myDeliveryBoxEALabel,
+                             myBoxDeliveryLabel, myBoxTradeLabel, tradeViewEdge, myTradeBoxEALabel, myDeliveryBoxNumber, myTradeBoxNumber, secondCollectionView]
         
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        secondCollectionView.delegate = self
+        secondCollectionView.dataSource = self
+
         for uiView in contentViewUIList {
             contentView.addSubview(uiView)
         }
@@ -272,7 +417,7 @@ class HomeViewController: UIViewController {
             make.top.equalTo(contentView).offset(20)
             make.leading.equalTo(contentView).offset(20)
             make.trailing.equalTo(contentView).offset(-20)
-            make.height.equalTo(200)
+            make.height.equalTo(230)
         }
         
         storageBoxStatusLabel.snp.makeConstraints { make in
@@ -286,26 +431,82 @@ class HomeViewController: UIViewController {
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
-        goodsOfTodayEdge.snp.makeConstraints { make in
-            make.top.equalTo(storageBoxStatusEdge.snp.bottom).offset(30)
+//        goodsOfTodayEdge.snp.makeConstraints { make in
+//            make.top.equalTo(storageBoxStatusEdge.snp.bottom).offset(30)
+//            make.leading.equalTo(contentView).offset(20)
+//            make.trailing.equalTo(contentView).offset(-20)
+//            make.height.equalTo(150)
+//        }
+        
+        myBoxDeliveryLabel.snp.makeConstraints { make in
+            make.top.equalTo(storageBoxStatusEdge.snp.bottom).offset(20)
+            make.leading.equalTo(deliveryViewEdge).offset(55)
+            make.width.equalTo(60)
+            make.height.equalTo(30)
+        }
+        
+        myBoxTradeLabel.snp.makeConstraints { make in
+            make.top.equalTo(storageBoxStatusEdge.snp.bottom).offset(20)
+            make.leading.equalTo(tradeViewEdge).offset(55)
+            make.width.equalTo(60)
+            make.height.equalTo(30)
+        }
+        
+        deliveryViewEdge.snp.makeConstraints { make in
+            make.top.equalTo(myBoxDeliveryLabel.snp.bottom).offset(10)
             make.leading.equalTo(contentView).offset(20)
+            make.width.equalTo(170)
+            make.height.equalTo(150)
+        }
+        
+        tradeViewEdge.snp.makeConstraints { make in
+            make.top.equalTo(myBoxTradeLabel.snp.bottom).offset(10)
             make.trailing.equalTo(contentView).offset(-20)
+            make.width.equalTo(170)
             make.height.equalTo(150)
         }
         
         goodsOfTodayLabel.snp.makeConstraints { make in
-            make.top.equalTo(goodsOfTodayEdge).offset(15)
-            make.leading.equalTo(goodsOfTodayEdge).offset(15)
+            make.top.equalTo(deliveryViewEdge).offset(15)
+            make.leading.equalTo(deliveryViewEdge).offset(15)
         }
         
-        goodsOfTodayButton.snp.makeConstraints { make in
-            make.top.equalTo(goodsOfTodayEdge).offset(6)
-            make.trailing.equalTo(goodsOfTodayEdge).offset(0)
-            make.size.equalTo(CGSize(width: 45, height: 45))
+//        homeViewVerticalLine.snp.makeConstraints { make in
+//            make.center.equalTo(goodsOfTodayEdge)
+//            make.height.equalTo(100)
+//            make.width.equalTo(2.5)
+//        }
+        
+        myDeliveryBoxEALabel.snp.makeConstraints { make in
+            make.top.equalTo(deliveryViewEdge).offset(15)
+            make.leading.equalTo(deliveryViewEdge).offset(40)
         }
+        
+        myDeliveryBoxNumber.snp.makeConstraints { make in
+            make.top.equalTo(myDeliveryBoxEALabel).offset(28)
+            make.leading.equalTo(20)
+            make.width.equalTo(deliveryViewEdge)
+        }
+        
+        myTradeBoxNumber.snp.makeConstraints { make in
+            make.top.equalTo(myTradeBoxEALabel).offset(28)
+            make.trailing.equalTo(-20)
+            make.width.equalTo(tradeViewEdge)
+        }
+        
+        myTradeBoxEALabel.snp.makeConstraints { make in
+            make.top.equalTo(tradeViewEdge).offset(15)
+            make.leading.equalTo(tradeViewEdge).offset(40)
+        }
+        
+//        goodsOfTodayButton.snp.makeConstraints { make in
+//            make.top.equalTo(goodsOfTodayEdge).offset(6)
+//            make.trailing.equalTo(goodsOfTodayEdge).offset(0)
+//            make.size.equalTo(CGSize(width: 45, height: 45))
+//        }
         
         saleStatusEdge.snp.makeConstraints { make in
-            make.top.equalTo(goodsOfTodayEdge.snp.bottom).offset(30)
+            make.top.equalTo(deliveryViewEdge.snp.bottom).offset(30)
             make.leading.equalTo(contentView).offset(20)
             make.trailing.equalTo(contentView).offset(-203)
             make.height.equalTo(55)
@@ -323,7 +524,7 @@ class HomeViewController: UIViewController {
         }
         
         purchaseStatusEdge.snp.makeConstraints { make in
-            make.top.equalTo(goodsOfTodayEdge.snp.bottom).offset(30)
+            make.top.equalTo(deliveryViewEdge.snp.bottom).offset(30)
             make.leading.equalTo(saleStatusEdge.snp.trailing).offset(20)
             make.trailing.equalTo(contentView).offset(-20)
             make.height.equalTo(55)
@@ -358,6 +559,20 @@ class HomeViewController: UIViewController {
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(storageBoxStatusEdge).offset(60)
+            make.leading.equalTo(storageBoxStatusEdge).offset(20)
+            make.trailing.equalTo(storageBoxStatusEdge).offset(-20)
+            make.bottom.equalTo(storageBoxStatusEdge).offset(-20)
+        }
+        
+        secondCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(mapViewEdge).offset(60)
+            make.leading.equalTo(mapViewEdge).offset(20)
+            make.trailing.equalTo(mapViewEdge).offset(-20)
+            make.bottom.equalTo(mapViewEdge).offset(-20)
+        }
+        
         storageBoxStatusButton.addTarget(self, action: #selector(storageBoxStatusButtonAction), for: .touchUpInside)
         goodsOfTodayButton.addTarget(self, action: #selector(goodsOfTodayButtonAction), for: .touchUpInside)
     }
@@ -368,6 +583,80 @@ class HomeViewController: UIViewController {
     
     @objc func goodsOfTodayButtonAction(_: UIButton) {
         tabBarController?.selectedIndex = 2
+    }
+    
+//    func gradientLayer(bounds : CGRect) -> CAGradientLayer{
+//        let gradient = CAGradientLayer()
+//        gradient.frame = bounds
+//        gradient.colors = [UIColor.orange.cgColor, UIColor.red.cgColor]
+//        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+//        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+//        return gradient
+//    }
+
+//    func gradientColor(gradientLayer :CAGradientLayer) -> UIColor? {
+//        UIGraphicsBeginImageContextWithOptions(gradientLayer.bounds.size, false, 0.0)
+//        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return UIColor(patternImage: image!)
+//    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 4
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.collectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewMyBoxCollectionCell", for: indexPath) as? HomeViewMyBoxCollectionCell else { return UICollectionViewCell() }
+            
+            if UserDefaults.standard.bool(forKey: "LoginStatus") == true {
+                if BoxStatusDataList[indexPath.row].boxEmpty == 0 {
+                    cell.boxEmptyzButton.tintColor = UIColor.systemGreen
+                } else if BoxStatusDataList[indexPath.row].boxEmpty == 1 {
+                    cell.boxEmptyzButton.tintColor = UIColor.systemRed
+                    cell.boxInsideStateButton.setImage(UIImage(systemName: "shippingbox.circle"), for: .normal)
+                    cell.boxInsideStateButton.tintColor = UIColor.systemBlue
+                } else if BoxStatusDataList[indexPath.row].boxEmpty == 2 {
+                    cell.boxEmptyzButton.tintColor = UIColor.systemRed
+                    cell.boxInsideStateButton.setImage(UIImage(systemName: "repeat.circle"), for: .normal)
+                    cell.boxInsideStateButton.tintColor = UIColor.systemBlue
+                }
+                
+                if BoxStatusDataList[indexPath.row].ownerName == UserInfoDataList[0].userID {
+                    cell.boxOwnerButton.tintColor = UIColor.systemGreen
+                } else { cell.boxOwnerButton.tintColor = UIColor.systemRed }
+            }
+            return cell
+        } else if collectionView == secondCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewGoodsCollectionCell", for: indexPath) as? HomeViewGoodsCollectionCell else { return UICollectionViewCell() }
+            
+            cell.UserViewImage.setImage(SalesPostDatalist[indexPath.row].GoodsImage, for: .normal)
+            cell.contentView.backgroundColor = .white
+
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if collectionView == self.collectionView {
+            return CGSize(width: 70, height: collectionView.frame.height)
+
+        } else if collectionView == secondCollectionView {
+            return CGSize(width: 100, height: collectionView.frame.height)
+
+        }
+        
+        return CGSize(width: 300, height: 300)
     }
 }
 

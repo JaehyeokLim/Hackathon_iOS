@@ -11,6 +11,7 @@ var UserInfoDataList = [UserInfoData]()
 
 struct UserInfoData {
     
+    let seq: Int?
     let userID: String?
     let userName: String?
     let userCellPhoneNumber: Int?

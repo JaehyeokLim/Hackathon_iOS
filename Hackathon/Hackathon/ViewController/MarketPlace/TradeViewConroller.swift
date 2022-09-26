@@ -79,7 +79,6 @@ class TradeViewController: UIViewController {
         superViewLayout()
         scrollViewLayout()
         contentViewLayout()
-        collectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +119,24 @@ class TradeViewController: UIViewController {
         }
         
         addButton.addTarget(self, action: #selector(addButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func buttonAction2(_: UIButton) {
+        let detailViewController = purchaseViewController()
+        let nav = UINavigationController(rootViewController: detailViewController)
+        // 1
+        nav.modalPresentationStyle = .pageSheet
+
+        
+        // 2
+        if let sheet = nav.sheetPresentationController {
+
+            // 3
+            sheet.detents = [.medium(), .medium()]
+
+        }
+        // 4
+        self.present(nav, animated: true, completion: nil)
     }
     
     @objc func addButtonAction(_: UIButton) {
@@ -168,17 +185,17 @@ class TradeViewController: UIViewController {
 extension TradeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SalesPostDatalist.count
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TradeViewCollectionCell", for: indexPath) as? TradeViewCollectionCell else { return UICollectionViewCell() }
-        
-//        cell.UserViewImage.image = SalesPostDatalist[indexPath.row].GoodsImage
+//
         cell.UserViewImage.setImage(SalesPostDatalist[indexPath.row].GoodsImage, for: .normal)
+        cell.contentView.backgroundColor = .topViewBackgroundColor
+        cell.priceLabel.text = SalesPostDatalist[indexPath.row].price
+        cell.mainTextLabel.text = SalesPostDatalist[indexPath.row].PostTitleText
 
-        collectionView.reloadData()
-        
         return cell
     }
 }
@@ -191,7 +208,7 @@ extension TradeViewController: UICollectionViewDelegateFlowLayout {
 
             let interval:CGFloat = 3
             let width: CGFloat = ( UIScreen.main.bounds.width - interval * 2 ) / 3
-            return CGSize(width: width , height: width )
+            return CGSize(width: width , height: width + 50 )
     }
 
     func collectionView(_ collectionView: UICollectionView,

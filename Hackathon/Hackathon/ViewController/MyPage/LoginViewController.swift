@@ -10,6 +10,8 @@ import SnapKit
 import Alamofire
 
 struct User: Codable {
+    
+    var seq: Int
     var id: String
     var name: String
     var phoneNumber: Int
@@ -338,17 +340,14 @@ class LoginViewController: UIViewController {
             let info = try? JSONDecoder().decode(User.self, from: data)
             print("불러오기 완료 \(info)")
             
-            let item = UserInfoData(userID: info?.id, userName: info?.name, userCellPhoneNumber: info?.phoneNumber, userEmail: info?.email, userAddress: info?.address, aptNum: info?.aptNum)
-            
+            let item = UserInfoData(seq: info?.seq, userID: info?.id, userName: info?.name, userCellPhoneNumber: info?.phoneNumber, userEmail: info?.email, userAddress: info?.address, aptNum: info?.aptNum)
+            print(info?.seq)
             UserInfoDataList.insert(item, at: 0)
             print("UserInfo DataList에 저장완료")
+            semaphore.signal()
         }
         
         task.resume()
-//        semaphore.wait()
-        
-        DispatchQueue.main.async {
-        
-        }
+        semaphore.wait()
     }
 }

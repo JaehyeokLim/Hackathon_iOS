@@ -16,5 +16,5 @@ struct SalesPostData {
     let PostMainText: String?
     let PostDate: Date?
     let BoxNumber: String?
-    let PostCategory: String?
+    let price: String?
 }

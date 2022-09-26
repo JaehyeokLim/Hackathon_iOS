@@ -257,7 +257,7 @@ class PostWriteViewController: UIViewController {
         
         let rightAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default) { action in
             
-            let data = SalesPostData(GoodsImage: self.goodsImage.image, PostTitleText: self.postTitleTextView.text, PostMainText: self.postMainTextView.text, PostDate: Date(), BoxNumber: self.postBoxNumberView.text, PostCategory: self.postCategoryTextView.text)
+            let data = SalesPostData(GoodsImage: self.goodsImage.image, PostTitleText: self.postTitleTextView.text, PostMainText: self.postMainTextView.text, PostDate: Date(), BoxNumber: self.postBoxNumberView.text, price: self.postCoastTextView.text)
             
             SalesPostDatalist.insert(data, at: 0)
             

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "MPKF3_VW_34FR+watch-41-stainless-silver-cell-hermes8s_VW_34FR_WF_CO+watch-face-41-hermes8s-complex-noirprint_VW_34FR_WF_CO.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "MPKF3_VW_34FR+watch-41-stainless-silver-cell-hermes8s_VW_34FR_WF_CO+watch-face-41-hermes8s-complex-noirprint_VW_34FR_WF_CO 1.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "MPKF3_VW_34FR+watch-41-stainless-silver-cell-hermes8s_VW_34FR_WF_CO+watch-face-41-hermes8s-complex-noirprint_VW_34FR_WF_CO 2.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

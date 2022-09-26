@@ -10,6 +10,13 @@
 		3073228B652733150FFC5BEE /* Pods_Hackathon_HackathonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D044DA6827F2D9C4F78168A3 /* Pods_Hackathon_HackathonUITests.framework */; };
 		4EF65FF577F8CB159BE6B264 /* Pods_HackathonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EADCDA23EBC365E28228C3 /* Pods_HackathonTests.framework */; };
 		BBFC21E47575A5BD198FC7F1 /* Pods_Hackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCD4166DEFB8E8BAAABBB74B /* Pods_Hackathon.framework */; };
+		FA198B7128D55C0F00A51D10 /* BoxStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7028D55C0F00A51D10 /* BoxStatusModel.swift */; };
+		FA198B7328D55CDF00A51D10 /* JsonPostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7228D55CDF00A51D10 /* JsonPostManager.swift */; };
+		FA198B7528D579E300A51D10 /* BoxViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7428D579E300A51D10 /* BoxViewCollectionCell.swift */; };
+		FA198B7728D5F4F800A51D10 /* ㅇㅇ.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7628D5F4F800A51D10 /* ㅇㅇ.swift */; };
+		FA198B7928D6109900A51D10 /* BoxImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7828D6109900A51D10 /* BoxImageModel.swift */; };
+		FA198B7B28D6299400A51D10 /* purchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7A28D6299400A51D10 /* purchaseViewController.swift */; };
+		FA198B7F28E1790B00A51D10 /* HomeViewGoodsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA198B7E28E1790B00A51D10 /* HomeViewGoodsCollectionCell.swift */; };
 		FAB3A55328D232AB00B9D60D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3A55228D232AB00B9D60D /* AppDelegate.swift */; };
 		FAB3A55528D232AB00B9D60D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3A55428D232AB00B9D60D /* SceneDelegate.swift */; };
 		FAB3A55728D232AB00B9D60D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3A55628D232AB00B9D60D /* HomeViewController.swift */; };
@@ -32,6 +39,7 @@
 		FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */; };
 		FAB8F1CE28D45E1C00043AEB /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1CD28D45E1C00043AEB /* UserInfoModel.swift */; };
 		FAB8F1D228D4BC4B00043AEB /* ProfileHalfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1D128D4BC4B00043AEB /* ProfileHalfViewController.swift */; };
+		FAB8F1D428D534BE00043AEB /* HomeViewMyBoxCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8F1D328D534BE00043AEB /* HomeViewMyBoxCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +69,13 @@
 		DCD4166DEFB8E8BAAABBB74B /* Pods_Hackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF8BD56D61810F1861907B90 /* Pods-Hackathon-HackathonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackathon-HackathonUITests.release.xcconfig"; path = "Target Support Files/Pods-Hackathon-HackathonUITests/Pods-Hackathon-HackathonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E345E2E562E1552F737F1F16 /* Pods-Hackathon-HackathonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hackathon-HackathonUITests.debug.xcconfig"; path = "Target Support Files/Pods-Hackathon-HackathonUITests/Pods-Hackathon-HackathonUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA198B7028D55C0F00A51D10 /* BoxStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxStatusModel.swift; sourceTree = "<group>"; };
+		FA198B7228D55CDF00A51D10 /* JsonPostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPostManager.swift; sourceTree = "<group>"; };
+		FA198B7428D579E300A51D10 /* BoxViewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxViewCollectionCell.swift; sourceTree = "<group>"; };
+		FA198B7628D5F4F800A51D10 /* ㅇㅇ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ㅇㅇ.swift"; sourceTree = "<group>"; };
+		FA198B7828D6109900A51D10 /* BoxImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxImageModel.swift; sourceTree = "<group>"; };
+		FA198B7A28D6299400A51D10 /* purchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchaseViewController.swift; sourceTree = "<group>"; };
+		FA198B7E28E1790B00A51D10 /* HomeViewGoodsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewGoodsCollectionCell.swift; sourceTree = "<group>"; };
 		FAB3A54F28D232AB00B9D60D /* Hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB3A55228D232AB00B9D60D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB3A55428D232AB00B9D60D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +102,7 @@
 		FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosManager.swift; sourceTree = "<group>"; };
 		FAB8F1CD28D45E1C00043AEB /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		FAB8F1D128D4BC4B00043AEB /* ProfileHalfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHalfViewController.swift; sourceTree = "<group>"; };
+		FAB8F1D328D534BE00043AEB /* HomeViewMyBoxCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewMyBoxCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +229,9 @@
 			children = (
 				FAB8F1B928D2FD1100043AEB /* UserProfileViewTableCell.swift */,
 				FAB8F1BC28D30A2400043AEB /* TradeViewCollectionCell.swift */,
+				FAB8F1D328D534BE00043AEB /* HomeViewMyBoxCollectionCell.swift */,
+				FA198B7428D579E300A51D10 /* BoxViewCollectionCell.swift */,
+				FA198B7E28E1790B00A51D10 /* HomeViewGoodsCollectionCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -222,6 +241,8 @@
 			children = (
 				FAB8F1BE28D30E8400043AEB /* SalesPostModel.swift */,
 				FAB8F1CD28D45E1C00043AEB /* UserInfoModel.swift */,
+				FA198B7028D55C0F00A51D10 /* BoxStatusModel.swift */,
+				FA198B7828D6109900A51D10 /* BoxImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB3A55628D232AB00B9D60D /* HomeViewController.swift */,
+				FA198B7628D5F4F800A51D10 /* ㅇㅇ.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -258,6 +280,7 @@
 				FAB3A58828D2335900B9D60D /* LoginViewController.swift */,
 				FAB3A58A28D2336B00B9D60D /* registerViewController.swift */,
 				FAB8F1D128D4BC4B00043AEB /* ProfileHalfViewController.swift */,
+				FA198B7A28D6299400A51D10 /* purchaseViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -274,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB8F1CB28D3493B00043AEB /* PhotosManager.swift */,
+				FA198B7228D55CDF00A51D10 /* JsonPostManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -522,16 +546,24 @@
 				FAB8F1BD28D30A2400043AEB /* TradeViewCollectionCell.swift in Sources */,
 				FAB8F1CE28D45E1C00043AEB /* UserInfoModel.swift in Sources */,
 				FAB3A58D28D2342100B9D60D /* TabBarController.swift in Sources */,
+				FA198B7928D6109900A51D10 /* BoxImageModel.swift in Sources */,
 				FAB3A55728D232AB00B9D60D /* HomeViewController.swift in Sources */,
+				FA198B7328D55CDF00A51D10 /* JsonPostManager.swift in Sources */,
+				FA198B7B28D6299400A51D10 /* purchaseViewController.swift in Sources */,
 				FAB8F1CC28D3493B00043AEB /* PhotosManager.swift in Sources */,
 				FAB8F1BA28D2FD1100043AEB /* UserProfileViewTableCell.swift in Sources */,
+				FAB8F1D428D534BE00043AEB /* HomeViewMyBoxCollectionCell.swift in Sources */,
+				FA198B7728D5F4F800A51D10 /* ㅇㅇ.swift in Sources */,
 				FAB3A58728D2334A00B9D60D /* UserProfileViewController.swift in Sources */,
 				FAB3A55328D232AB00B9D60D /* AppDelegate.swift in Sources */,
 				FAB3A55528D232AB00B9D60D /* SceneDelegate.swift in Sources */,
 				FAB8F1D228D4BC4B00043AEB /* ProfileHalfViewController.swift in Sources */,
 				FAB8F1C228D30F8F00043AEB /* PostWriteViewController.swift in Sources */,
+				FA198B7F28E1790B00A51D10 /* HomeViewGoodsCollectionCell.swift in Sources */,
 				FAB3A55D28D232AB00B9D60D /* Hackathon.xcdatamodeld in Sources */,
 				FAB8F1BF28D30E8400043AEB /* SalesPostModel.swift in Sources */,
+				FA198B7128D55C0F00A51D10 /* BoxStatusModel.swift in Sources */,
+				FA198B7528D579E300A51D10 /* BoxViewCollectionCell.swift in Sources */,
 				FAB3A58B28D2336B00B9D60D /* registerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

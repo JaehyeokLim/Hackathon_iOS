@@ -1,15 +1,15 @@
 //
-//  TradeViewCollectionCell.swift
+//  HomeViewGoodsCollectionCell.swift
 //  Hackathon
 //
-//  Created by Jaehyeok Lim on 2022/09/15.
+//  Created by Jaehyeok Lim on 2022/09/26.
 //
 
 import UIKit
 import SnapKit
 
-class TradeViewCollectionCell: UICollectionViewCell {
-    static let identifier = "TradeViewCollectionCell"
+class HomeViewGoodsCollectionCell: UICollectionViewCell {
+    static let identifier = "HomeViewGoodsCollectionCell"
     
     let UserViewImage: UIButton = {
         let UserViewImage = UIButton()
@@ -54,41 +54,16 @@ class TradeViewCollectionCell: UICollectionViewCell {
     private func setConstraint() {
         contentView.backgroundColor = UIColor.white
         addSubview(UserViewImage)
-        addSubview(priceLabel)
-        addSubview(mainTextLabel)
-        addSubview(button)
         
         UserViewImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-50)
+            make.bottom.equalToSuperview()
         }
-        
-        button.snp.makeConstraints { make in
-            make.bottom.equalTo(UserViewImage).offset(-2)
-            make.trailing.equalTo(UserViewImage).offset(-2)
-            make.size.equalTo(CGSize(width: 25, height: 23))
-        }
-        
-        priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(UserViewImage.snp.bottom).offset(5)
-            make.leading.equalTo(UserViewImage).offset(5)
-        }
-        
-        mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(priceLabel.snp.bottom).offset(3)
-            make.leading.equalTo(priceLabel).offset(0)
-        }
-        
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+ 
         UserViewImage.addTarget(TradeViewController().self, action: #selector(TradeViewController().buttonAction2), for: .touchUpInside)
 
-    }
-    
-    @objc func buttonAction(_: UIButton) {
-        button.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        button.tintColor = .systemYellow
     }
     
     override init(frame: CGRect) {
@@ -100,3 +75,4 @@ class TradeViewCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
